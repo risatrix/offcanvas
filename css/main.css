@@ -112,6 +112,7 @@ body {
 
 .title {
     color: white;
+    float: left;
 }
 
 /* ==============
@@ -239,10 +240,6 @@ nav a:hover {
 /* ============
     WIDE: Menu
    ============ */
-
-    .title {
-        float: left;
-    }
 
     nav {
         float: right;

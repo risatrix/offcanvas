@@ -1,0 +1,22 @@
+/* Off Canvas JS
+/* For the purposes of graceful degradation we shouldn't show the toggle or hide anything until
+/* we know there's js.
+/*
+*/
+
+#nav-toggle {display: none;}
+
+
+@media only screen and (max-width: 520px) {
+
+	.js #nav-toggle {
+		display: block;
+		float: right;
+		color: white;
+		text-decoration: none;
+	}
+
+	.js nav {
+		display: none
+	}
+}

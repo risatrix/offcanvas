@@ -1,23 +1,38 @@
-/*Build the menu*/
- (function ($, window, document, undefined) {	
- 
-	$.fn.offcanvas = function(options) {
-		var opts = $.extend( {}, $.fn.offcanvas.defaults, options );
+;(function ($, window, document, undefined) {   
+    var pluginName = 'OffCanvas';
+    
+    var defaults = {
+           target_menu: "#mainMenu"
+        };
 
+    function Canvasize(element, options) {   
+        this.element = element;
+        this.$el = $(element);
+        this.settings = $.extend({}, defaults, options);
+        this._defaults = defaults;
+        this._name = pluginName;
+        this.init();
+    };
 
-		//wrap the content, clone the menu and append the clone to the wrapper	
-		$('body').children().wrapAll('<div class="content-wrapper">');
-		offContent = '<nav>' + $(opts.target_menu).html();   
-		$(offContent).addClass('offcanvas').insertBefore('.content-wrapper');
-		//add a back button to the menu
-		$('.offcanvas ul').append('<li><a href="#" id="close-menu">Back</a></li>');
+    Canvasize.prototype = {
+        init: function () {
+            offcanvas = this.settings.target_menu
+            offContent = '<nav>' + $(offcanvas).html();   
+            $('body').children().wrapAll('<div class="content-wrapper">');
+            $(offContent).addClass('offcanvas').insertBefore('.content-wrapper');
+            //add a back button to the menu
+            $('.offcanvas ul').append('<li><a href="#" id="close-menu">Back</a></li>');
+        }
+    };
 
-	};
+    // preventing against multiple instantiations
+    $.fn[pluginName] = function (options) {
+        return this.each(function () {
+            if (!$.data(this, 'plugin_' + pluginName)) {
+                $.data(this, 'plugin_' + pluginName, 
+                new Canvasize( this, options ));
+            }
+        });
+    };
 
-	$.fn.offcanvas.defaults = {
-	target_menu: "#mainMenu"
-	};	
-
-}(jQuery, window, window.document, undefined));
-
-$(window).offcanvas();
+})( jQuery, window, document );

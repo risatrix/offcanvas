@@ -2,7 +2,8 @@
     var pluginName = 'OffCanvas';
     
     var defaults = {
-           target_menu: "#mainMenu"
+           target_menu: "#mainMenu",
+           toggle: "#nav-toggle"
         };
 
     function Canvasize(element, options) {   
@@ -12,17 +13,26 @@
         this._defaults = defaults;
         this._name = pluginName;
         this.init();
-    };
+    }
 
     Canvasize.prototype = {
         init: function () {
-            offcanvas = this.settings.target_menu
+            nav_open = false, $doc = $(document.documentElement);
+            this.buildMenu(this.settings.target_menu); //comment out if you already have a menu
+            this.addToggle(this.settings.toggle);
+            //eventually, add ability to initialize swipe toggle here
+        },
+        buildMenu: function (target_menu) {
+            offcanvas = this.settings.target_menu;
             offContent = '<nav>' + $(offcanvas).html();   
             $('body').children().wrapAll('<div class="content-wrapper">');
             $(offContent).addClass('offcanvas').insertBefore('.content-wrapper');
             //add a back button to the menu
             $('.offcanvas ul').append('<li><a href="#" id="close-menu">Back</a></li>');
-        }
+        },
+        addToggle: function (toggle) {
+          $(toggle).on('click', function(){alert('togglenav!')});  
+        },
     };
 
     // preventing against multiple instantiations

@@ -3,7 +3,8 @@
     
     var defaults = {
            target_menu: "#mainMenu",
-           toggle: "#nav-toggle"
+           toggle: "#nav-toggle",
+           nav_class: "nav-on"
         };
 
     function Canvasize(element, options) {   
@@ -31,8 +32,15 @@
             $('.offcanvas ul').append('<li><a href="#" id="close-menu">Back</a></li>');
         },
         addToggle: function (toggle) {
-          $(toggle).on('click', function(){alert('togglenav!')});  
+            var self = this;
+            $(toggle).on('click.' + pluginName, function () {
+                self.toggleNav();
+            });  
         },
+        toggleNav: function () {
+            nav_class = this.settings.nav_class;
+            $('body').toggleClass(nav_class);
+        }
     };
 
     // preventing against multiple instantiations

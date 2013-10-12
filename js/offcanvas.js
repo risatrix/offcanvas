@@ -16,13 +16,15 @@
         this.init();
     }
 
+    var nav_open = false; 
+    var $doc = $(document.documentElement);
+
     Canvasize.prototype = {
         init: function () {
-            var nav_open = false; 
-            var $doc = $(document.documentElement);
             this.buildMenu(this.settings.target_menu); //comment out if you already have a menu
             this.addToggle(this.settings.toggle);
             //eventually, add ability to initialize swipe toggle here
+            $doc.addClass('nav-ready');
         },
         buildMenu: function (target_menu) {
             offcanvas = this.settings.target_menu;

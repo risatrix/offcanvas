@@ -29,8 +29,8 @@
             offContent = '<nav>' + $(offcanvas).html();   
             $('body').children().wrapAll('<div class="content-wrapper">');
             $(offContent).addClass('offcanvas').insertBefore('.content-wrapper');
-            //add a back button to the menu
-            $('.offcanvas ul').append('<li><a href="#" id="close-menu">Back</a></li>');
+            //add a back button to the menu if there isn't one
+            // $('.offcanvas ul').append('<li><a href="#" id="close-menu">Back</a></li>');
         },
         addToggle: function (toggle) {
             var self = this;

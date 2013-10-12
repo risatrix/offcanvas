@@ -4,16 +4,37 @@
 /*
 */
 
-#nav-toggle {display: none;}
+#nav-toggle, #close-menu {display: none;}
 
 
 @media only screen and (max-width: 520px) {
 
-	.js #nav-toggle {
+	#close-menu {display: block;}
+
+	#nav-toggle {
 		display: block;
 		float: right;
 		color: white;
 		text-decoration: none;
+	}
+
+	/* minimal styling for a css-dropdown using :target to hide and show nav */
+	#mainMenu {
+		clear: both;
+		height: 0;
+		line-height: 0;
+	}
+
+	#mainMenu li, #mainMenu a {
+		height: 0;
+		line-height: 0;
+		overflow: hidden;
+		border-bottom-width: 0;
+	}
+
+	#mainMenu:target, #mainMenu:target li {
+		height: auto;
+		line-height: auto;
 	}
 
 	.js nav {

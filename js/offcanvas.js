@@ -18,7 +18,8 @@
 
     Canvasize.prototype = {
         init: function () {
-            nav_open = false, $doc = $(document.documentElement);
+            var nav_open = false; 
+            var $doc = $(document.documentElement);
             this.buildMenu(this.settings.target_menu); //comment out if you already have a menu
             this.addToggle(this.settings.toggle);
             //eventually, add ability to initialize swipe toggle here
@@ -52,7 +53,7 @@
         },
         initCloseNav: function () {
             $doc.removeClass(this.settings.nav_class);
-            nav_open - false;
+            nav_open = false;
 
             return false;
         }

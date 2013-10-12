@@ -38,8 +38,23 @@
             });  
         },
         toggleNav: function () {
-            nav_class = this.settings.nav_class;
-            $('body').toggleClass(nav_class);
+            if (nav_open && $doc.hasClass(this.settings.nav_class)) {
+              this.initCloseNav();
+            } else {
+              this.openNav();
+            }
+        },
+        openNav: function () {
+            $doc.addClass(this.settings.nav_class);
+            nav_open = true;
+
+            return false;
+        },
+        initCloseNav: function () {
+            $doc.removeClass(this.settings.nav_class);
+            nav_open - false;
+
+            return false;
         }
     };
 

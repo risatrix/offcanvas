@@ -1,10 +1,13 @@
-/* Off Canvas JS
-/* For the purposes of graceful degradation we shouldn't show the toggle or hide anything until
-/* we know there's js.
-/*
+/* Off Canvas CSS
+/* This is not meant to be one-size-fits-all
+/* Out the box it will give you a 250px wide menu on the right, with js
+/* And a very basic non-js fallback
 */
 
-#nav-toggle, #close-menu {display: none;}
+body {margin: 0;}
+
+/*Assuming you want the menu for mobile only, hide the accessories for larger sizes*/
+#nav-toggle, #close-menu, .offcanvas {display: none;}
 
 
 @media only screen and (max-width: 520px) {
@@ -37,7 +40,35 @@
 		line-height: auto;
 	}
 
-	.js nav {
+	/*Level 2: class-based styling via absolute positioning.
+	When we know the offcanvas js is ready, we hide the target menu 
+	and set up the offcanvas menu underneat all the rest of the content*/
+
+	.nav-ready nav /*replace this with your target menu's selector*/{ 
 		display: none
 	}
+
+	.nav-ready .offcanvas {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 250px;
+		z-index: -1; /*literally nothing should be lower than this menu*/
+	}
+
+	.nav-ready .content-wrapper {
+		z-index: 5;
+		/*since the wrapper sits on top of the offcanvas, it is ideally not transparent */
+		background-color: white; 
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	.nav-on .content-wrapper{
+		right: 250px;
+	}
+
+
 }

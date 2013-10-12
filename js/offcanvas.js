@@ -23,6 +23,7 @@
         init: function () {
             this.buildMenu(this.settings.target_menu); //comment out if you already have a menu
             this.addToggle(this.settings.toggle);
+            this.addToggle("#close-menu");
             //eventually, add ability to initialize swipe toggle here
             $doc.addClass('nav-ready');
         },
@@ -32,7 +33,7 @@
             $('body').children().wrapAll('<div class="content-wrapper">');
             $(offContent).addClass('offcanvas').insertBefore('.content-wrapper');
             //add a back button to the menu if there isn't one
-            // $('.offcanvas ul').append('<li><a href="#" id="close-menu">Back</a></li>');
+            // $('.offcanvas ul').append('<li><a href="#" id="close-nav">Back</a></li>');
         },
         addToggle: function (toggle) {
             var self = this;

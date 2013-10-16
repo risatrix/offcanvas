@@ -37,14 +37,14 @@
       }
       _init = true;
 
-      var closeNavEnd = function(e) {
+      
+var closeNavEnd = function(e) {
         if (e && e.target === inner) {
           $(document).off(transition_end, closeNavEnd);
         }
         nav_open = false;
         inner.style.width = '';
       };
-
       app.closeNav =function() {
         if (nav_open) {
           // close navigation after transition or immediately

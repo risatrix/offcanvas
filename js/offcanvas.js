@@ -13,10 +13,10 @@
         this.settings = $.extend({}, defaults, options);
         this._defaults = defaults;
         this._name = pluginName;
+        this.is_nav_open = false; 
         this.init();
     }
 
-    var nav_open = false; 
     var $doc = $(document.documentElement);
 
     Canvasize.prototype = {
@@ -42,7 +42,7 @@
             });  
         },
         toggleNav: function () {
-            if (nav_open && $doc.hasClass(this.settings.nav_class)) {
+            if (this.is_nav_open && $doc.hasClass(this.settings.nav_class)) {
               this.initCloseNav();
             } else {
               this.openNav();
@@ -50,13 +50,13 @@
         },
         openNav: function () {
             $doc.addClass(this.settings.nav_class);
-            nav_open = true;
+            this.is_nav_open = true;
 
             return false;
         },
         initCloseNav: function () {
             $doc.removeClass(this.settings.nav_class);
-            nav_open = false;
+            this.is_nav_open = false;
 
             return false;
         }

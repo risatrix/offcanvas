@@ -71,23 +71,25 @@
             return false;
         },
         initCloseNav: function () {
-            if (this.nav_open) {
+            if (this.is_nav_open == true) {
               // close navigation after transition or immediately
-              var duration = (transition_end && transition_prop) ? parseFloat(window.getComputedStyle($('.content-wrapper'), '')[transition_prop + 'Duration']) : 0;
+              var duration = (transition_end && transition_prop) ? 
+                parseFloat(window.getComputedStyle($('.content-wrapper')[0], '')[transition_prop + 'Duration']) : 0;
               if (duration > 0) {
-                $(document).on(transition_end, closeNavEnd);
+                $(document).on('transition', this.closeNavEnd);
               } else {
-                closeNavEnd(null);
+                this.closeNavEnd(null);
               }
             }
             
             $doc.removeClass(this.settings.nav_class);
         },
         closeNavEnd: function(e) {
+            alert('closeNavEnd');
             if (e && e.target === inner) {
-              $(document).off(transition_end, closeNavEnd);
+              $(document).off(transition_end, this.closeNavEnd);
             }
-            this.nav_open = false;
+            this.is_nav_open = false;
         }
     };
 

@@ -20,7 +20,7 @@
            target_menu: "#mainMenu",
            toggle: "#nav-toggle",
            nav_class: "nav-on", 
-           inner: ".content-wrapper"
+           wrapper: ".content-wrapper"
         };
 
     function Canvasize(element, options) {   
@@ -38,6 +38,7 @@
     Canvasize.prototype = {
         init: function () {
             this.buildMenu(this.settings.target_menu); //comment out if you already have a menu
+            $wrapper=$(this.settings.wrapper);
             this.addToggle(this.settings.toggle);
             this.addToggle("#close-menu");
             //eventually, add ability to initialize swipe toggle here
@@ -67,27 +68,25 @@
         openNav: function () {
             $doc.addClass(this.settings.nav_class);
             this.is_nav_open = true;
-
             return false;
         },
         initCloseNav: function () {
             if (this.is_nav_open == true) {
               // close navigation after transition or immediately
               var duration = (transition_end && transition_prop) ? 
-                parseFloat(window.getComputedStyle($('.content-wrapper')[0], '')[transition_prop + 'Duration']) : 0;
+                parseFloat(window.getComputedStyle($wrapper[0], '')[transition_prop + 'Duration']) : 0;
               if (duration > 0) {
-                $(document).on('transition', this.closeNavEnd);
+                $(document).on('transition', this.closeNav);
               } else {
-                this.closeNavEnd(null);
+                this.closeNav(null);
               }
             }
             
             $doc.removeClass(this.settings.nav_class);
         },
-        closeNavEnd: function(e) {
-            alert('closeNavEnd');
-            if (e && e.target === inner) {
-              $(document).off(transition_end, this.closeNavEnd);
+        closeNav: function(e) {
+            if (e && e.target === $wrapper) {
+              $(document).off(transition_end, this.closeNav);
             }
             this.is_nav_open = false;
         }

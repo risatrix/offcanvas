@@ -19,7 +19,6 @@
 
 
     var defaults = {
-           target_menu: "#mainMenu",
            toggle: "#nav-toggle",
            nav_class: "nav-on",
            wrapper: ".content-wrapper"
@@ -39,16 +38,15 @@
 
     Canvasize.prototype = {
         init: function () {
-            this.buildMenu(this.settings.target_menu); //comment out if you already have a menu
+            this.buildMenu(); //comment out if you already have a menu
             $wrapper=$(this.settings.wrapper);
             this.addToggle(this.settings.toggle);
             this.addToggle("#close-menu");
             //eventually, add ability to initialize swipe toggle here
             $doc.addClass('nav-ready');
         },
-        buildMenu: function (target_menu) {
-            offcanvas = this.settings.target_menu;
-            offContent = '<nav>' + $(offcanvas).html();
+        buildMenu: function () {
+            offContent = '<nav>' + this.$el.html();
             $('body').children().wrapAll('<div class="content-wrapper">');
             $(offContent).addClass('offcanvas').insertBefore('.content-wrapper');
             //add a back button to the menu if there isn't one
@@ -97,6 +95,7 @@
     // preventing against multiple instantiations
     $.fn[pluginName] = function (options) {
         return this.each(function () {
+
             if (!$.data(this, 'plugin_' + pluginName)) {
                 $.data(this, 'plugin_' + pluginName,
                 new Canvasize( this, options ));

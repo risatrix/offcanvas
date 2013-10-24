@@ -40,33 +40,35 @@
             <div class="main wrapper clearfix">
 
                 <article>
-                    <header>
+                    <section>
                         <h2>What This Plugin Does</h2>
-                        <p>Targets a menu, builds an offcanvas version that hides behind the rest of your page, and adds classes when you hit a designated toggle. Make the browser window small to see the toggle.</p>
-                        <p>NB: You have to add the toggle yourself. The plugin will not do it for you.
-                    </header>
+                        <p>Targets a menu, builds an offcanvas version that hides behind the rest of your page, and gives you the ability to show or hide it based on toggling classes. You call the plugin like this:</p>
+                        <code>(<em>targetMenu</em>).offcanvas();</code>
+                        <p>where <code><em>targetMenu</em></code> is any jQuery selector.
+
+                        <p>NB: You have to add the toggle to your code yourself. The default plugin expects <code>.nav-toggle</code> but you can pass in your own selector as an option. Make the browser window narrow (i.e. mobile sized) to see the toggle on this page.</p>
+                    </section>
                     <section>
                         <h2>What This Plugin Does NOT Do</h2>
-                        <p>This plugin does NOT animate via jQuery. It only adds classes that the CSS responds to. Read <a href="http://coding.smashingmagazine.com/2013/01/15/off-canvas-navigation-for-responsive-website/">David Bushell's excellent article</a> for an explanation why.</p>
+                        <p>This plugin does NOT animate via jQuery. It builds a menu and adds classes that the CSS responds to, allowing for progressive enhancement. Read <a href="http://coding.smashingmagazine.com/2013/01/15/off-canvas-navigation-for-responsive-website/">David Bushell's excellent article</a> for an explanation of why this is the best approach.</p>
                     </section>
                     <section>
                         <h2>Use Cases</h2>
-                        <ul>
-                            <li>-You have a pre-existing menu and want to make it offcanvas for mobile.(default)</li>
-                            <li>-You've already built an offcanvas menu for all size screens and you want to use the toggle functions only.</li>
-                            <li>-You want to do something crazy with shifting content around. Good news, everyone: once you've grasped the toggling of classes you can do whatever you want with the CSS!</li>
+                            <p>1) You have a pre-existing menu and want to make it offcanvas for mobile - just make sure to only show the toggle at the right size and includ media queries in your CSS.</P>
+                            <p>2) You want to shift your content around with a toggle at any size. Great. Just show the toggle and don't constrain the CSS with media queries.</p>
+                            <p>-You want to do something crazy we haven't even thought of yet. Good news, everyone: once you're toggling of classes you can do whatever you want with the CSS - <a href="http://tympanus.net/Development/SidebarTransitions/" title="link to article on sidebar article">transitions, flips, leaps, bounds!</a></p>
                         </ul>
                     </section>
                     <section>
-                        <h2>It's the Canvasssssssssss, Precious</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</p>
+                        <h2>What's with Me Having to Mess with the CSS?</h2>
+                        <p>This is just a basic, no-frills, right-sliding menu. It's not one-size-fits-all. It doesn't make sense to clutter up the js with <em>left</em> or <em>right</em> classes when the entire point of this approach is to separate the js from the styles. This also allows you great flexibility in adapting the menu to your needs. Check out this article on <a href="http://tympanus.net/Development/SidebarTransitions/" title="link to article on sidebar transitions">sidebar transitions</a> for inspiration.</p>
                     </section>
                 </article>
 
-                <!--<aside>
-                    <h3>Side Canvas</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
-                </aside>-->
+                <aside>
+                    <h3>Transform FTW!</h3>
+                    <p>The only way to achieve smooth menu transitions on mobile is with the CSS3 Transform/Translate3d (cf. <a href="http://googlecode.blogspot.com/2010/08/css3-transitions-and-transforms-in.html">this article</a>). property, because that is the only hardware-accelerated property that works. The default CSS uses this if the capability is detected, but falls back to absolute positioning if not.</p>
+                </aside>
 
             </div> <!-- #main -->
         </div> <!-- #main-container -->

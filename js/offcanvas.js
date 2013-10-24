@@ -2,7 +2,7 @@
 //https://github.com/dbushell/Responsive-Off-Canvas-Menu
 
 ;(function ($, window, document, undefined) {
-    var pluginName = 'OffCanvas';
+    var pluginName = 'offcanvas';
 
     // normalize vendor prefixes
     var transition_prop = window.Modernizr.prefixed('transition'),

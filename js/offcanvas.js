@@ -2,8 +2,7 @@
     var pluginName = 'OffCanvas';
 
     // normalize vendor prefixes
-    var transform_prop = window.Modernizr.prefixed('transform'),
-        transition_prop = window.Modernizr.prefixed('transition'),
+    var transition_prop = window.Modernizr.prefixed('transition'),
         transition_end = (function() {
           var props = {
               'WebkitTransition' : 'webkitTransitionEnd',

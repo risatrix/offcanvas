@@ -19,7 +19,7 @@
 
 
     var defaults = {
-           toggle: "#nav-toggle",
+           toggle: ".nav-toggle",
            nav_class: "nav-on",
            wrapper: ".content-wrapper"
         };

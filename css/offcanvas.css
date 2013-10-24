@@ -7,14 +7,14 @@
 body {margin: 0;}
 
 /*Assuming you want the menu for mobile only, hide the accessories for larger sizes*/
-#nav-toggle, #close-menu, .offcanvas {display: none;}
+.nav-toggle, #close-menu, .offcanvas {display: none;}
 
 
 @media only screen and (max-width: 520px) {
 
 	#close-menu {display: block;}
 
-	#nav-toggle {
+	.nav-toggle {
 		display: block;
 		float: right;
 		color: white;

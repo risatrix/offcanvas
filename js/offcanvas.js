@@ -1,7 +1,7 @@
 //Jquery plugin based on dbushell's excelent demo:
 //https://github.com/dbushell/Responsive-Off-Canvas-Menu
 
-;(function ($, window, document, undefined) {   
+;(function ($, window, document, undefined) {
     var pluginName = 'OffCanvas';
 
     // normalize vendor prefixes
@@ -17,21 +17,21 @@
           return props.hasOwnProperty(transition_prop) ? props[transition_prop] : false;
       })();
 
-    
+
     var defaults = {
            target_menu: "#mainMenu",
            toggle: "#nav-toggle",
-           nav_class: "nav-on", 
+           nav_class: "nav-on",
            wrapper: ".content-wrapper"
         };
 
-    function Canvasize(element, options) {   
+    function Canvasize(element, options) {
         this.element = element;
         this.$el = $(element);
         this.settings = $.extend({}, defaults, options);
         this._defaults = defaults;
         this._name = pluginName;
-        this.is_nav_open = false; 
+        this.is_nav_open = false;
         this.init();
     }
 
@@ -48,7 +48,7 @@
         },
         buildMenu: function (target_menu) {
             offcanvas = this.settings.target_menu;
-            offContent = '<nav>' + $(offcanvas).html();   
+            offContent = '<nav>' + $(offcanvas).html();
             $('body').children().wrapAll('<div class="content-wrapper">');
             $(offContent).addClass('offcanvas').insertBefore('.content-wrapper');
             //add a back button to the menu if there isn't one
@@ -58,7 +58,7 @@
             var self = this;
             $(toggle).on('click.' + pluginName, function () {
                 self.toggleNav();
-            });  
+            });
         },
         toggleNav: function () {
             if (this.is_nav_open && $doc.hasClass(this.settings.nav_class)) {
@@ -75,7 +75,7 @@
         initCloseNav: function () {
             if (this.is_nav_open == true) {
               // close navigation after transition or immediately
-              var duration = (transition_end && transition_prop) ? 
+              var duration = (transition_end && transition_prop) ?
                 parseFloat(window.getComputedStyle($wrapper[0], '')[transition_prop + 'Duration']) : 0;
               if (duration > 0) {
                 $(document).on('transition', this.closeNav);
@@ -83,7 +83,7 @@
                 this.closeNav(null);
               }
             }
-            
+
             $doc.removeClass(this.settings.nav_class);
         },
         closeNav: function(e) {
@@ -98,7 +98,7 @@
     $.fn[pluginName] = function (options) {
         return this.each(function () {
             if (!$.data(this, 'plugin_' + pluginName)) {
-                $.data(this, 'plugin_' + pluginName, 
+                $.data(this, 'plugin_' + pluginName,
                 new Canvasize( this, options ));
             }
         });

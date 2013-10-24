@@ -3,8 +3,8 @@
 
     // normalize vendor prefixes
     var transform_prop = window.Modernizr.prefixed('transform'),
-      transition_prop = window.Modernizr.prefixed('transition'),
-      transition_end = (function() {
+        transition_prop = window.Modernizr.prefixed('transition'),
+        transition_end = (function() {
           var props = {
               'WebkitTransition' : 'webkitTransitionEnd',
               'MozTransition'    : 'transitionend',

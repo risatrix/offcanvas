@@ -1,3 +1,6 @@
+//Jquery plugin based on dbushell's excelent demo:
+//https://github.com/dbushell/Responsive-Off-Canvas-Menu
+
 ;(function ($, window, document, undefined) {   
     var pluginName = 'OffCanvas';
 

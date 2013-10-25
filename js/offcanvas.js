@@ -73,15 +73,12 @@
         initCloseNav: function () {
             if (this.is_nav_open == true) {
               // close navigation after transition or immediately
-              var duration = (transition_end && transition_prop) ?
-                parseFloat(window.getComputedStyle($wrapper[0], '')[transition_prop + 'Duration']) : 0;
-              if (duration > 0) {
-                $(document).on('transition', this.closeNav);
+              if ($wrapper.css(transition_prop + 'Duration') !== null) {
+                  $(document).on('transition', this.closeNav);
               } else {
                 this.closeNav(null);
               }
-            }
-
+            }  
             $doc.removeClass(this.settings.nav_class);
         },
         closeNav: function(e) {

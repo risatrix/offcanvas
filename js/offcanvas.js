@@ -21,7 +21,7 @@
     var defaults = {
            toggle: ".nav-toggle",
            nav_class: "nav-on",
-           wrapper: ".content-wrapper"
+           wrapper: "content-wrapper"
         };
 
     function Canvasize(element, options) {
@@ -39,16 +39,22 @@
     Canvasize.prototype = {
         init: function () {
             this.buildMenu(); //comment out if you already have a menu
-            $wrapper=$(this.settings.wrapper);
+            // $wrapper=$(this.settings.wrapper);
             this.addToggle(this.settings.toggle);
             this.addToggle("#close-menu");
             //eventually, add ability to initialize swipe toggle here
             $doc.addClass('nav-ready');
         },
         buildMenu: function () {
-            offContent = '<nav>' + this.$el.html();
-            $('body').children().wrapAll('<div class="content-wrapper">');
-            $(offContent).addClass('offcanvas').insertBefore('.content-wrapper');
+            var $offContent = $('<nav>', {
+                html: this.$el.html()
+            });
+
+            var $wrapper = this.$wrapper = $('body').wrapInner($('<div>', {
+                class: this.settings.wrapper
+            }));
+
+            $offContent.addClass('offcanvas').insertBefore($wrapper);
             //add a back button to the menu if there isn't one
             // $('.offcanvas ul').append('<li><a href="#" id="close-nav">Back</a></li>');
         },
@@ -71,10 +77,11 @@
             return false;
         },
         initCloseNav: function () {
-            if (this.is_nav_open == true) {
+          console.log(this.$wrapper);
+            if (this.is_nav_open) {
               // close navigation after transition or immediately
               var duration = (transition_end && transition_prop) ?
-                parseFloat(window.getComputedStyle($wrapper[0], '')[transition_prop + 'Duration']) : 0;
+                parseFloat(window.getComputedStyle(this.$wrapper[0], '')[transition_prop + 'Duration']) : 0;
               if (duration > 0) {
                 $(document).on('transition', this.closeNav);
               } else {
@@ -95,7 +102,6 @@
     // preventing against multiple instantiations
     $.fn[pluginName] = function (options) {
         return this.each(function () {
-
             if (!$.data(this, 'plugin_' + pluginName)) {
                 $.data(this, 'plugin_' + pluginName,
                 new Canvasize( this, options ));
